@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Strict Admin Role Security Check
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
@@ -11,7 +11,7 @@ include '../db.php';
 require_once '../booking_cleanup.php';
 cleanup_expired_bookings($conn);
 
-// Handle Date/Time Filter Range if selected
+
 $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
 $dateCondition = "";
 
@@ -168,7 +168,7 @@ if ($filter === 'month') {
                             <?php 
                             $totalWins = 0;
                             if ($matchCheck && $matchCheck->num_rows > 0) {
-                                // Counts standard 'Win' outcomes plus any medals/trophies as wins
+                                
                                 $winRes = $conn->query("SELECT COUNT(*) as count FROM matches WHERE outcome = 'Win' OR outcome LIKE '%Medal%' OR outcome LIKE '%Trophy%' OR outcome LIKE '%Gold%'");
                                 if ($winRes) { $totalWins = $winRes->fetch_assoc()['count']; }
                             }
