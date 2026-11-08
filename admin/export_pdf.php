@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Strict Admin Role Security Check (prevents students from accessing/downloading reports via direct URL)
+
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../login.php");
     exit();
@@ -10,13 +10,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 include '../db.php';
 require_once '../booking_cleanup.php';
 cleanup_expired_bookings($conn);
-require('fpdf.php'); // Make sure path matches where you put fpdf.php
+require('fpdf.php'); 
 
 class PDF extends FPDF {
     // Page header
     function Header() {
         // Brand Header Background
-        $this->SetFillColor(10, 63, 143); // Deep NSBM Blue
+        $this->SetFillColor(10, 63, 143); 
         $this->Rect(0, 0, 210, 25, 'F');
         
         $this->SetFont('Arial', 'B', 16);
@@ -78,7 +78,7 @@ $pdf->Cell(47, 8, 'Total Wins', 1, 0, 'C', true);
 $pdf->Cell(47, 8, 'Total Losses', 1, 0, 'C', true);
 $pdf->Cell(49, 8, 'Medals / Trophies', 1, 1, 'C', true);
 
-// Fetch match stats safely
+
 $mPlayed = $conn->query("SELECT COUNT(*) as cnt FROM matches WHERE status = 'Completed'")->fetch_assoc()['cnt'] ?? 0;
 $mWins = $conn->query("SELECT COUNT(*) as cnt FROM matches WHERE outcome = 'Win' OR outcome LIKE '%Medal%' OR outcome LIKE '%Trophy%' OR outcome LIKE '%Gold%'")->fetch_assoc()['cnt'] ?? 0;
 $mLosses = $conn->query("SELECT COUNT(*) as cnt FROM matches WHERE outcome = 'Loss'")->fetch_assoc()['cnt'] ?? 0;
@@ -151,7 +151,7 @@ if ($cRes && $cRes->num_rows > 0) {
     $pdf->Cell(190, 7, 'No club data found.', 1, 1, 'C');
 }
 
-// Output PDF for download/viewing in Adobe Reader
+// Output PDF for download
 $pdf->Output('I', 'NSBM_SportsHub_Summary_Report.pdf');
 exit();
 ?>
