@@ -99,3 +99,36 @@
         });
     });
 })();
+
+/* Show / Hide password button*/
+(function () {
+    'use strict';
+
+    function addToggle(input) {
+        if (input.parentNode.classList.contains('pw-wrap')) { return; }
+
+        var wrap = document.createElement('div');
+        wrap.className = 'pw-wrap';
+        wrap.style.position = 'relative';
+        input.parentNode.insertBefore(wrap, input);
+        wrap.appendChild(input);
+        input.style.paddingRight = '90px';
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = 'Show';
+        btn.setAttribute('aria-label', 'Show or hide password');
+        btn.style.cssText = 'position:absolute;top:0;right:36px;height:' +
+            (input.offsetHeight || 38) + 'px;border:0;background:none;' +
+            'color:#198754;font-weight:600;font-size:14px;cursor:pointer;';
+        btn.addEventListener('click', function () {
+            var hidden = input.type === 'password';
+            input.type = hidden ? 'text' : 'password';
+            btn.textContent = hidden ? 'Hide' : 'Show';
+            input.focus();
+        });
+        wrap.appendChild(btn);
+    }
+
+    document.querySelectorAll('input[type="password"]').forEach(addToggle);
+})();
