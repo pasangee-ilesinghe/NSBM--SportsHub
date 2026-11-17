@@ -6,17 +6,17 @@ $is_local = ($server_name == 'localhost' || $server_name == '127.0.0.1'
     || preg_match('/^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.)/', $server_name));
 
 if ($is_local) {
-    // Local XAMPP credentials
+    // Local XAMPP credentials (default root with no password)
     $host = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "nsbm_sportshub";
+    $dbname = "nsbm_sportshub"; // Change to your exact local database name if different
 } else {
-    //Live Production Server Credintials
-    $host = "sql300.infinityfree.com";
-    $username =  "if0_43388055";
-    $password = "Tnv5JtvuIh777";
-    $dbname =  "if0_43388055_nsbm_sportshub";
+    // Live Production Server credentials (update these when you host live)
+    $host = "sqlxxx.yourhostingprovider.com"; // Provided by your web host
+    $username = "your_live_db_user";          // Provided by your web host
+    $password = "YourSecureLivePassword123";  // Your actual secure database password
+    $dbname = "your_live_db_name";            // Provided by your web host
 }
 
 // Create database connection using MySQLi
