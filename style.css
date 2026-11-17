@@ -623,3 +623,7 @@ img, video, svg { max-width: 100%; }
 .table td.text-center > a.btn,
 .table td.text-center > form.d-inline { margin: 0 .175rem .45rem !important; }
 .table td > form.d-inline > .btn { margin: 0 !important; }
+
+.hero-section h1::after,
+.page-banner h1::after,
+.page-banner h2::after { content: none; }
