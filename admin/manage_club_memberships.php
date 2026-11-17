@@ -72,9 +72,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && isset($_P
                         $result = $conn->query($query);
 
                         if ($result && $result->num_rows > 0) {
-                            $row_no = $result->num_rows;   // countdown: newest request shows the highest number, down to 1
+                            $row_no = 1;
                             while($row = $result->fetch_assoc()) {
-                                $display_no = $row_no--;
+                                $display_no = $row_no++;
                                 $badgeColor = 'bg-warning text-dark';
                                 if($row['status'] == 'Approved') $badgeColor = 'bg-success';
                                 if($row['status'] == 'Rejected') $badgeColor = 'bg-danger';
