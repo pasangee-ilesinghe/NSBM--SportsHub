@@ -12,7 +12,7 @@ A web application that helps NSBM university sports clubs manage memberships, tr
 | Item | Link |
 |------|------|
 | 🌐 Live application | `https://nsbm-sporthub.ct.ws` |
-| 🎥 Demo video | `Demo video` |
+| 🎥 Demo video | `https://drive.google.com/file/d/1ohNvHfkoFx9s4cpAyM25LCQMaJuoYTNN/view?usp=sharing` |
 
 ---
 
